@@ -16,6 +16,13 @@ export class UserInputComponent {
   enteredExpectedReturn = signal('5');
   enteredDuration = signal('10');
 
+  private reset() {
+    this.enteredInitialInvestment.set('0');
+    this.enteredAnnualInvestment.set('0');
+    this.enteredExpectedReturn.set('5');
+    this.enteredDuration.set('10');
+  }
+
   onSubmit() {
     this.calculate.emit({
       initialInvestment: +this.enteredInitialInvestment(),
@@ -23,5 +30,7 @@ export class UserInputComponent {
       expectedReturn: +this.enteredExpectedReturn(),
       duration: +this.enteredDuration(),
     });
+
+    this.reset();
   }
 }
