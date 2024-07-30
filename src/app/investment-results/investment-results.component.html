@@ -2,7 +2,7 @@
 <p>Please enter some values and press "Calculate"</p>
 } -->
 
-<p *ngIf="!results(); else showTable" class="center">
+<p *ngIf="!results; else showTable" class="center">
   Please enter some values and press "Calculate"
 </p>
 <ng-template #showTable>
@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      @for(result of results(); track result.year) {
+      @for(result of results; track result.year) {
       <tr>
         <td>{{ result.year }}</td>
         <td>{{ result.valueEndOfYear | currency : "JOD" }}</td>
