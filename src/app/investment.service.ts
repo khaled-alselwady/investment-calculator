@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import type { InvestmentInput } from './investment-input.model';
 import { AnnualData } from './annual-data.model';
 
 @Injectable({ providedIn: 'root' })
 export class InvestmentService {
-  resultData?: AnnualData[];
+  resultData = signal<AnnualData[] | undefined>(undefined);
 
   calculateInvestmentResults(date: InvestmentInput) {
     const { initialInvestment, expectedReturn, annualInvestment, duration } =
@@ -28,6 +28,6 @@ export class InvestmentService {
       });
     }
 
-    this.resultData = annualData;
+    this.resultData.set(annualData);
   }
 }
